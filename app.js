@@ -302,11 +302,11 @@ function bindDiscordAuthUI(){
   auth.btnLogout = byId("btnLogout");
 
   on(auth.btnLogin, "click", () => {
-    window.location.href = "/api/discord-auth";
+    window.location.href = "/.netlify/functions/discord-auth";
   });
 
   on(auth.btnLogout, "click", async () => {
-    await fetch("/api/logout");
+    await fetch("/.netlify/functions/logout");
     window.location.reload();
   });
 }
