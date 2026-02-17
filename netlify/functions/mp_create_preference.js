@@ -99,7 +99,7 @@ exports.handler = async (event) => {
       discord_id: sessionUser,
       discord_name: sessionName
    },
-   notification_url: "https://malibump.netlify.app/.netlify/functions/mp_webhook"
+   notification_url: "https://malibu02.netlify.app/.netlify/functions/mp_webhook"
    
     };
 
