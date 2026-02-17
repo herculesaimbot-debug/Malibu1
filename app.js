@@ -257,11 +257,13 @@ async function payNow(){
   }
 
   try{
-    const res = await fetch("/.netlify/functions/mp_create_preference",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify({ items })
-    });
+    const res = await fetch("/.netlify/functions/mp_create_preference", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+  body: JSON.stringify({ items })
+});
+
 
     const data = await res.json();
     if (!res.ok) 
@@ -313,7 +315,10 @@ function bindDiscordAuthUI(){
 
 async function refreshDiscordUserUI(){
   try {
-    const res = await fetch("/api/me", { cache: "no-store" });
+    const res = await fetch("/.netlify/functions/me", {
+  cache: "no-store",
+  credentials: "include"
+});
     const data = await res.json();
 
     if (!data?.logged) {
