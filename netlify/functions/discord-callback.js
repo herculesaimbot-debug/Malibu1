@@ -57,7 +57,7 @@ exports.handler = async (event) => {
       return { statusCode: 400, body: "Fetch user failed: " + JSON.stringify(me) };
     }
 
-    // Check if already a member
+    // Check membership
     let member = null;
     const checkRes = await fetch(`https://discord.com/api/v10/guilds/${guildId}/members/${me.id}`, {
       headers: { Authorization: `Bot ${botToken}` },
@@ -66,7 +66,6 @@ exports.handler = async (event) => {
     if (checkRes.status === 200) {
       member = await checkRes.json();
     } else if (checkRes.status === 404) {
-      // Join guild
       const addRes = await fetch(`https://discord.com/api/v10/guilds/${guildId}/members/${me.id}`, {
         method: "PUT",
         headers: {
@@ -81,7 +80,6 @@ exports.handler = async (event) => {
         return { statusCode: 400, body: `Join failed: ${addRes.status} ${txt}` };
       }
 
-      // Fetch member to get roles
       const memberRes = await fetch(`https://discord.com/api/v10/guilds/${guildId}/members/${me.id}`, {
         headers: { Authorization: `Bot ${botToken}` },
       });
@@ -92,7 +90,7 @@ exports.handler = async (event) => {
       return { statusCode: 400, body: `Member check failed: ${checkRes.status} ${txt}` };
     }
 
-    // Apply role (preserve existing roles)
+    // Apply role if needed
     const currentRoles = member && Array.isArray(member.roles) ? member.roles : [];
     if (currentRoles.indexOf(roleId) === -1) {
       const newRoles = currentRoles.concat([roleId]);
@@ -112,13 +110,24 @@ exports.handler = async (event) => {
       }
     }
 
-    // Create session
+    // Create secure session cookie
     const sessionValue = createSessionCookie(me, sessionSecret, 604800);
 
     return {
       statusCode: 302,
       headers: {
-        "Set-Cookie": cookie("discord_session", sessionValue, { maxAge: 604800 }),
+        "Set-Cookie": [
+          cookie("discord_session", sessionValue, {
+            maxAge: 604800,
+            sameSite: "None",
+            secure: true
+          }),
+          cookie("discord_oauth_state", "", {
+            maxAge: 0,
+            sameSite: "None",
+            secure: true
+          })
+        ],
         "Location": "/",
         "Cache-Control": "no-store",
       },
