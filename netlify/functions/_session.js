@@ -59,11 +59,20 @@ function parseCookies(cookieHeader = "") {
 }
 
 function cookie(name, value, opts = {}) {
-  const { httpOnly = true, secure = true, sameSite = "Lax", path = "/", maxAge } = opts;
+  const {
+    httpOnly = true,
+    secure = true,
+    sameSite = "None",
+    path = "/",
+    maxAge
+  } = opts;
+
   let str = `${name}=${encodeURIComponent(value)}; Path=${path}; SameSite=${sameSite}`;
+
   if (httpOnly) str += "; HttpOnly";
   if (secure) str += "; Secure";
   if (typeof maxAge === "number") str += `; Max-Age=${maxAge}`;
+
   return str;
 }
 
