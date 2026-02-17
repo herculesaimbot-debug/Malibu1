@@ -36,7 +36,7 @@ exports.handler = async (event) => {
   try {
 
     const cookies = parseCookies(event.headers.cookie || "");
-    const session = verifySessionCookie(cookies.session, process.env.SESSION_SECRET);
+    const session = verifySessionCookie(cookies.discord_session, process.env.SESSION_SECRET);
 
     if (!session || !session.user) {
       return {
