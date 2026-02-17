@@ -589,5 +589,33 @@
   });
 </script>
 
+  <script>
+async function checkLogin() {
+  try {
+    const res = await fetch("/.netlify/functions/me", {
+      credentials: "include"
+    });
+
+    if (!res.ok) return;
+
+    const data = await res.json();
+
+    if (data.user) {
+      document.getElementById("btnLogin").style.display = "none";
+      document.getElementById("userBox").style.display = "flex";
+      document.getElementById("username").textContent = data.user.username;
+      document.getElementById("avatar").src =
+        `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.png`;
+    }
+  } catch (e) {
+    console.log("Erro ao verificar login", e);
+  }
+}
+
+checkLogin();
+    
+</script>
+
+
 </body>
 </html>
