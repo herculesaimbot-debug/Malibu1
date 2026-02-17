@@ -6,7 +6,10 @@ exports.handler = async () => {
   const redirectUri = process.env.DISCORD_REDIRECT_URI;
 
   if (!clientId || !redirectUri) {
-    return { statusCode: 500, body: "Missing env vars: DISCORD_CLIENT_ID / DISCORD_REDIRECT_URI" };
+    return {
+      statusCode: 500,
+      body: "Missing env vars: DISCORD_CLIENT_ID / DISCORD_REDIRECT_URI"
+    };
   }
 
   const state = randomBytes(24).toString("hex");
@@ -20,17 +23,17 @@ exports.handler = async () => {
     `&state=${state}` +
     `&prompt=consent`;
 
- return {
-  statusCode: 302,
-  headers: {
-    "Set-Cookie": cookie("discord_oauth_state", state, {
-      maxAge: 600,
-      sameSite: "None",
-      secure: true
-    }),
-    "Location": url,
-    "Cache-Control": "no-store",
-  },
-    body: "",
+  return {
+    statusCode: 302,
+    headers: {
+      "Set-Cookie": cookie("discord_oauth_state", state, {
+        maxAge: 600,
+        sameSite: "Lax",
+        secure: true
+      }),
+      "Location": url,
+      "Cache-Control": "no-store"
+    },
+    body: ""
   };
 };
