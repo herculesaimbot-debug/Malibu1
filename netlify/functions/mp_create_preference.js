@@ -10,7 +10,8 @@ const PRODUCTS = [
   { id:"vip_prata", price:28.99, title:"VIP Prata (30 dias)" },
   { id:"vip_ouro", price:33.99, title:"VIP Ouro (30 dias)" },
   { id:"vip_platina", price:38.99, title:"VIP Platina (30 dias)" },
-  { id:"vip_diamante", price:00.10, title:"VIP Diamante (30 dias)" },
+  { id:"vip_diamante", price:48.99, title:"VIP Diamante (30 dias)" },
+  { id:"vip_rubi", price:00.20, title:"VIP Diamante (30 dias)" },
   
   { id:"coins_1m", price:20.00, title:"1.000.000" },
   { id:"coins_2m", price:35.00, title:"2.000.000" },
