@@ -30,5 +30,6 @@ return {
     }),
     "Location": url,
     "Cache-Control": "no-store",
-  };
+  },
+  body: "",
 };
