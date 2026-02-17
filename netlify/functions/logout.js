@@ -1,15 +1,9 @@
-const { cookie } = require("./_session");
-
 exports.handler = async () => {
   return {
     statusCode: 302,
     multiValueHeaders: {
       "Set-Cookie": [
-        cookie("discord_session", "", {
-          maxAge: 0,
-          sameSite: "Lax",
-          secure: true
-        })
+        "discord_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0"
       ]
     },
     headers: {
