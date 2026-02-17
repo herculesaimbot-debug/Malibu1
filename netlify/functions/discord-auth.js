@@ -20,13 +20,17 @@ exports.handler = async () => {
     `&state=${state}` +
     `&prompt=consent`;
 
-  return {
-    statusCode: 302,
-    headers: {
-      "Set-Cookie": cookie("discord_oauth_state", state, { maxAge: 600 }),
-      "Location": url,
-      "Cache-Control": "no-store",
-    },
+ return {
+  statusCode: 302,
+  headers: {
+    "Set-Cookie": cookie("discord_oauth_state", state, {
+      maxAge: 600,
+      sameSite: "None",
+      secure: true
+    }),
+    "Location": url,
+    "Cache-Control": "no-store",
+  },
     body: "",
   };
 };
