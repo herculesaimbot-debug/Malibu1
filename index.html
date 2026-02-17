@@ -616,6 +616,16 @@ checkLogin();
     
 </script>
 
+  <script>
+const btnLogout = document.getElementById("btnLogout");
+
+if (btnLogout) {
+  btnLogout.addEventListener("click", function () {
+    window.location.href = "/.netlify/functions/logout";
+  });
+}
+</script>
+
 
 </body>
 </html>
