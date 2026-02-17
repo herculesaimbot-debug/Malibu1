@@ -81,26 +81,28 @@ exports.handler = async (event) => {
     // Cria sessão
     const sessionValue = createSessionCookie(me, sessionSecret, 604800);
 
-    return {
-      statusCode: 302,
-      headers: {
-        "Set-Cookie": [
-          cookie("discord_session", sessionValue, {
-            maxAge: 604800,
-            sameSite: "Lax",
-            secure: true
-          }),
-          cookie("discord_oauth_state", "", {
-            maxAge: 0,
-            sameSite: "Lax",
-            secure: true
-          })
-        ],
-        "Location": "/",
-        "Cache-Control": "no-store"
-      },
-      body: ""
-    };
+  return {
+  statusCode: 302,
+  multiValueHeaders: {
+    "Set-Cookie": [
+      cookie("discord_session", sessionValue, {
+        maxAge: 604800,
+        sameSite: "Lax",
+        secure: true
+      }),
+      cookie("discord_oauth_state", "", {
+        maxAge: 0,
+        sameSite: "Lax",
+        secure: true
+      })
+    ]
+  },
+  headers: {
+    "Location": "/",
+    "Cache-Control": "no-store"
+  },
+  body: ""
+};
 
   } catch (err) {
     return {
