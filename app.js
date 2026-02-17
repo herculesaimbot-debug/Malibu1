@@ -20,8 +20,8 @@ const teamData = [
   { name:"MENORZIN",role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@bunny.vsfd"]] },
   { name:"SNAKE",  role:"Adminstrador  • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@userww...1"]] },
   { name:"KAKÁ",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@kakazl34"]] },
-  { name:"MULTZ",   role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@tk.maell7"]] },
-  { name:"CADU",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@kduzn0"]] },
+  { name:"MULTII",   role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@tk.maell7"]] },
+  { name:"KDU",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@kduzn0"]] },
   { name:"JOÃO",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@oaoj157"]] },
   { name:"DoisKa",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","#"]] },
 ];
