@@ -93,15 +93,22 @@ exports.handler = async (event) => {
     }
 
     const preference = {
-   items: mpItems,
-   auto_return: "approved",
-   metadata: {
-      discord_id: sessionUser,
-      discord_name: sessionName
-   },
-   notification_url: "https://malibu02.netlify.app/.netlify/functions/mp_webhook"
-   
-    };
+    items: mpItems,
+  auto_return: "approved",
+
+  back_urls: {
+    success: "https://malibu3.netlify.app/#success",
+    failure: "https://malibu3.netlify.app/#checkout",
+    pending: "https://malibu3.netlify.app/#checkout"
+  },
+
+  metadata: {
+    discord_id: sessionUser,
+    discord_name: sessionName
+  },
+
+  notification_url: "https://malibu3.netlify.app/.netlify/functions/mp_webhook"
+};
 
     const response = await mercadopago.preferences.create(preference);
 
