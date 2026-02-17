@@ -3,7 +3,7 @@ exports.handler = async () => {
     statusCode: 302,
     multiValueHeaders: {
       "Set-Cookie": [
-        "discord_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0"
+        "discord_session=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0"
       ]
     },
     headers: {
