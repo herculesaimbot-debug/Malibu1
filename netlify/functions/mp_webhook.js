@@ -19,7 +19,7 @@ exports.handler = async (event) => {
     }
 
     const data = paymentResponse.body;
-
+    console.log("STATUS REAL DO PAGAMENTO:", data.status);
     if (data.status !== "approved") {
       console.log("Pagamento não aprovado:", data.status);
       return { statusCode: 200 };
