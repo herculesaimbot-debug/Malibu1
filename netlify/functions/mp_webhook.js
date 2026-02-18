@@ -1,5 +1,4 @@
 const mercadopago = require("mercadopago");
-const fetch = require("node-fetch");
 
 mercadopago.configure({
   access_token: process.env.MP_ACCESS_TOKEN
