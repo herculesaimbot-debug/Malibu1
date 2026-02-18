@@ -3,28 +3,29 @@ const CONNECT_CMD = "";        // ex: "connect SEU_IP_AQUI:30120"
 
 const pages = ["home", "store", "rules", "team", "checkout"];
 
-// Categorias
 const categories = ["VIPs", "Dinheiro", "Leveis", "Organizações", "Unban"];
 let activeCategory = "VIPs";
 
 let productsData = [];
 
 
-// Equipe
 const teamData = [
-  { name:"AQUILES", role:"Fundador • Malibu Roleplay", bio:"Direção do projeto, decisões finais e visão do RP.", links:[["TikTok","https://www.tiktok.com/@aquilesrp"]] },
-  { name:"ANNY",    role:"Fundadora • Malibu Roleplay", bio:"Administração geral, organização e padronização das regras e experiência do RP.", links:[["TikTok","https://www.tiktok.com/@beckpoar"]] },
-  { name:"VT",      role:"Programador • Malibu Roleplay", bio:"Desenvolvimento de scripts, estabilidade, otimização e segurança do servidor.", links:[["TikTok","#"]] },
-  { name:"GORDIN",  role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@deryck.thadeu"]] },
-  { name:"KING",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@gb.schmitz"]] },
-  { name:"MENORZIN",role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@bunny.vsfd"]] },
-  { name:"SNAKE",  role:"Adminstrador  • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@userww...1"]] },
-  { name:"KAKÁ",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@kakazl34"]] },
-  { name:"MULTII",   role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@tk.maell7"]] },
-  { name:"KDU",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@kduzn0"]] },
-  { name:"JOÃO",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","https://www.tiktok.com/@oaoj157"]] },
-  { name:"DoisKa",    role:"Adminstrador • Malibu Roleplay", bio:"Responsável pela adminstração do servidor.", links:[["TikTok","#"]] },
+  { name:"AQUILES", group:"FUNDADOR", role:"Fundador • Malibu Roleplay", bio:"Direção do projeto, decisões finais e visão do RP.", links:[["TikTok","https://www.tiktok.com/@aquilesrp"]] },
+  { name:"ANNY", group:"FUNDADOR", role:"Fundadora • Malibu Roleplay", bio:"Administração geral, organização e padronização das regras e experiência do RP.", links:[["TikTok","https://www.tiktok.com/@beckpoar"]] },
+
+  { name:"VT", group:"PROGRAMADOR", role:"Programador • Malibu Roleplay", bio:"Desenvolvimento de scripts, estabilidade, otimização e segurança do servidor.", links:[["TikTok","#"]] },
+
+  { name:"GORDIN", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@deryck.thadeu"]] },
+  { name:"KING", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@gb.schmitz"]] },
+  { name:"MENORZIN", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@bunny.vsfd"]] },
+  { name:"SNAKE", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@userww...1"]] },
+  { name:"KAKÁ", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@kakazl34"]] },
+  { name:"MULTII", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@tk.maell7"]] },
+  { name:"KDU", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@kduzn0"]] },
+  { name:"JOÃO", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@oaoj157"]] },
+  { name:"DoisKa", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","#"]] },
 ];
+
 
 const cart = new Map();
 const fmtBRL = (v) => Number(v || 0).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
@@ -213,26 +214,143 @@ function renderCategoryTabs(){
   });
 }
 
+
 function renderTeam(){
   const wrap = byId("teamCards");
   if (!wrap) return;
 
   wrap.innerHTML = "";
-  teamData.forEach(m=>{
-    const el = document.createElement("div");
-    el.className = "member";
-    el.innerHTML = `
-      <div class="avatar">${m.name.slice(0,1).toUpperCase()}</div>
-      <div class="name">${m.name}</div>
-      <div class="role">${m.role}</div>
-      <div class="bio">${m.bio}</div>
-      <div class="links">
-        ${m.links.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]}</a>`).join("")}
-      </div>
+
+  const founders = teamData.filter(m => m.group === "FUNDADOR");
+  const programmers = teamData.filter(m => m.group === "PROGRAMADOR");
+  const admins = teamData.filter(m => m.group === "ADMINISTRADORES");
+
+
+  if(founders.length){
+    const block = document.createElement("div");
+    block.className = "team-premium-block";
+
+    block.innerHTML = `
+      <div class="team-premium-title">FUNDADOR</div>
+      <div class="team-premium-row"></div>
     `;
-    wrap.appendChild(el);
-  });
+
+    const row = block.querySelector(".team-premium-row");
+
+    founders.forEach(m => {
+      row.appendChild(createMemberCard(m, true));
+    });
+
+    wrap.appendChild(block);
+  }
+
+
+  if(programmers.length){
+    const block = document.createElement("div");
+    block.className = "team-premium-block";
+
+    block.innerHTML = `
+      <div class="team-premium-title">PROGRAMADOR</div>
+      <div class="team-premium-row"></div>
+    `;
+
+    const row = block.querySelector(".team-premium-row");
+
+    programmers.forEach(m => {
+      row.appendChild(createMemberCard(m, false));
+    });
+
+    wrap.appendChild(block);
+  }
+
+ 
+  if(admins.length){
+
+    const block = document.createElement("div");
+    block.className = "admin-wrapper";
+
+    const title = document.createElement("div");
+    title.className = "admin-title";
+    title.textContent = "ADMINISTRADORES";
+
+    const grid = document.createElement("div");
+    grid.className = "admin-grid";
+
+    admins.forEach(m => {
+      grid.appendChild(createMemberCard(m, false));
+    });
+
+    block.appendChild(title);
+    block.appendChild(grid);
+    wrap.appendChild(block);
+  }
 }
+
+function createMemberCard(m, premium){
+  const el = document.createElement("div");
+  el.className = "member";
+
+  if(premium){
+    el.classList.add("founder-highlight");
+  }
+
+  el.innerHTML = `
+    <div class="avatar">${m.name.slice(0,1).toUpperCase()}</div>
+    <div class="name">${m.name}</div>
+    <div class="role">${m.role}</div>
+    <div class="bio">${m.bio}</div>
+    <div class="links">
+      ${m.links.map(l=>`<a href="${l[1]}" target="_blank">${l[0]}</a>`).join("")}
+    </div>
+  `;
+
+  return el;
+}
+
+function createMemberCard(m, premium){
+  const el = document.createElement("div");
+  el.className = "member";
+
+  if(premium){
+    el.classList.add("founder-highlight");
+  }
+
+  el.innerHTML = `
+    <div class="avatar">${m.name.slice(0,1).toUpperCase()}</div>
+    <div class="name">${m.name}</div>
+    <div class="role">${m.role}</div>
+    <div class="bio">${m.bio}</div>
+    <div class="links">
+      ${m.links.map(l=>`<a href="${l[1]}" target="_blank">${l[0]}</a>`).join("")}
+    </div>
+  `;
+
+  return el;
+}
+
+
+function createMemberCard(m, premium){
+  const el = document.createElement("div");
+  el.className = "member";
+
+  if(premium){
+    el.classList.add("founder-highlight");
+  }
+
+  el.innerHTML = `
+    <div class="avatar">${m.name.slice(0,1).toUpperCase()}</div>
+    <div class="name">${m.name}</div>
+    <div class="role">${m.role}</div>
+    <div class="bio">${m.bio}</div>
+    <div class="links">
+      ${m.links.map(l=>`<a href="${l[1]}" target="_blank">${l[0]}</a>`).join("")}
+    </div>
+  `;
+
+  return el;
+}
+
+
 
 function toast(msg){
   const t = byId("toast");
