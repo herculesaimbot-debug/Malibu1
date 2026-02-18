@@ -7,6 +7,7 @@ exports.handler = async () => {
     { id:"vip_ouro", category:"VIPs", name:"VIP Ouro (30 dias)", price:33.99, tag:"VIP", desc:"Após a compra, abra um ticket.", img:"/assets/products/ouro.webp" },
     { id:"vip_platina", category:"VIPs", name:"VIP Platina (30 dias)", price:38.99, tag:"VIP", desc:"Após a compra, abra um ticket.", img:"/assets/products/platina.webp" },
     { id:"vip_diamante", category:"VIPs", name:"VIP Diamante (30 dias)", price:48.99, tag:"VIP", desc:"Após a compra, abra um ticket.", img:"/assets/products/diamante.webp" },
+    { id:"vip_rubi", category:"VIPs", name:"VIP RUBI (30 dias)", price:00.10, tag:"VIP", desc:"Após a compra, abra um ticket.", img:"/assets/products/diamante.webp" },
     
 
     // Dinheiro
