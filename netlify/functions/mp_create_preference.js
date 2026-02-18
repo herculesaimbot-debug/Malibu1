@@ -11,6 +11,7 @@ const PRODUCTS = [
   { id:"vip_ouro", price:33.99, title:"VIP Ouro (30 dias)" },
   { id:"vip_platina", price:38.99, title:"VIP Platina (30 dias)" },
   { id:"vip_diamante", price:48.99, title:"VIP Diamante (30 dias)" },
+  { id:"vip_rubi", price:0.10, title:"VIP RUBI (30 dias)" },
   
   { id:"coins_1m", price:20.00, title:"1.000.000" },
   { id:"coins_2m", price:35.00, title:"2.000.000" },
@@ -29,7 +30,7 @@ const PRODUCTS = [
 
   { id:"unban_serial", price:100.00, title:"Desban Serial" },
   { id:"unban_account", price:50.00, title:"Desban Conta" },
-  { id:"unban_discord", price:14.99, title:"Desban Discord" }
+  { id:"unban_discord", price:14.99, title:"Desban Discord" },
 ];
 
 exports.handler = async (event) => {
