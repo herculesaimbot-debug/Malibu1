@@ -626,3 +626,26 @@ body::before{
     grid-template-columns:1fr;
   }
 }
+
+
+.rules-panel{
+  display:none;
+}
+
+.rules-panel.show{
+  display:block;
+}
+
+.rules-tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.rules-tabs .btn.active{
+  background:rgba(176,38,255,.18);
+  border-color:rgba(176,38,255,.55);
+  box-shadow:0 0 18px rgba(176,38,255,.25);
+}
+
