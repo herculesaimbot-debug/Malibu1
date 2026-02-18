@@ -1,3 +1,10 @@
+const mercadopago = require("mercadopago");
+const fetch = require("node-fetch");
+
+mercadopago.configure({
+  access_token: process.env.MP_ACCESS_TOKEN
+});
+
 exports.handler = async (event) => {
   try {
     const body = JSON.parse(event.body || "{}");
