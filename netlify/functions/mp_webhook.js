@@ -34,9 +34,9 @@ exports.handler = async (event) => {
     const discordId = data.metadata?.discord_id || "Não identificado";
     const discordName = data.metadata?.discord_name || "Desconhecido";
     const total = data.transaction_amount || 0;
-    const date = data.date_approved
-      ? new Date(data.date_approved).toLocaleString("pt-BR")
-      : "Data desconhecida";
+   const date = data.date_approved
+  ? new Date(data.date_approved).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
+  : "Data desconhecida";
 
     const productNames = data.additional_info?.items
       ?.map(i => `${i.title} (x${i.quantity})`)
