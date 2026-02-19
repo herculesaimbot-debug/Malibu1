@@ -21,9 +21,6 @@ const teamData = [
   { name:"SNAKE", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@userww...1"]] },
   { name:"KAKÁ", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@kakazl34"]] },
   { name:"MULTII", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@tk.maell7"]] },
-  { name:"KDU", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@kduzn0"]] },
-  { name:"JOÃO", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","https://www.tiktok.com/@oaoj157"]] },
-  { name:"DoisKa", group:"ADMINISTRADORES", role:"Administrador • Malibu Roleplay", bio:"Responsável pela administração do servidor.", links:[["TikTok","#"]] },
 ];
 
 
