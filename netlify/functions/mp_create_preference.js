@@ -97,9 +97,9 @@ exports.handler = async (event) => {
   auto_return: "approved",
 
   back_urls: {
-    success: "https://malibu3.netlify.app/#success",
-    failure: "https://malibu3.netlify.app/#checkout",
-    pending: "https://malibu3.netlify.app/#checkout"
+    success: "https://maliburoleplay.com.br/#success",
+    failure: "https://maliburoleplay.com.br/#checkout",
+    pending: "https://maliburoleplay.com.br/#checkout"
   },
 
   metadata: {
@@ -107,7 +107,7 @@ exports.handler = async (event) => {
     discord_name: sessionName
   },
 
-  notification_url: "https://malibu3.netlify.app/.netlify/functions/mp_webhook"
+  notification_url: "https://maliburoleplay.com.br/.netlify/functions/mp_webhook"
 };
 
     const response = await mercadopago.preferences.create(preference);
